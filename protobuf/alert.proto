@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package alert_manager;
+
+enum Priority {
+  LOW = 0;
+  MEDIUM = 1;
+  HIGH = 2;
+  CRITICAL = 3;
+}
+
+enum AlertType {
+  BLOOD_TEMPERATURE = 0;
+  LOW_OXIDATION = 1;
+  LOW_BATTERY = 2;
+}
+
+message Alert {
+  int64 timestamp = 1;  // Unix timestamp in seconds
+  Priority priority = 2;
+  AlertType type = 3;
+  string message = 4;   // Predefined message with parameters
+  repeated int32 params = 5;  // Up to 2 integer parameters
+}
+
+message AlertList {
+  repeated Alert alerts = 1;
+}
